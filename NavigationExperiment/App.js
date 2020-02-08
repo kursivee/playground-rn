@@ -16,7 +16,6 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-
 import {
   Header,
   LearnMoreLinks,
@@ -24,13 +23,16 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
 import { NativeModules } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const App: () => React$Node = () => {
+const Stack = createStackNavigator()
+
+const HomeScreen = ({navigation}) => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
+    <View>
+    <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -43,9 +45,13 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Button
+            <Button
                onPress={ () => NativeModules.NavigationModule.goToNextScreen()}
-               title="Hello"
+               title="Go to Native"
+              />
+              <Button
+               onPress={ () => navigation.navigate('NextScreen')}
+               title="Go to Next RN"
               />
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
@@ -75,7 +81,30 @@ const App: () => React$Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </View>
+  )
+}
+
+const NextScreen = () => {
+  return (
+    <View>
+      <Text>Next Screen</Text>
+      <Button
+               onPress={ () => NativeModules.NavigationModule.goToNextScreen()}
+               title="Go to Native"
+              />
+    </View>
+  )
+}
+
+const App: () => React$Node = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="NextScreen" component={NextScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
