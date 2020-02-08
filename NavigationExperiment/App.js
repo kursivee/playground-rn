@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
 } from 'react-native';
 
 import {
@@ -23,6 +24,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import { NativeModules } from 'react-native';
 
 const App: () => React$Node = () => {
   return (
@@ -40,6 +43,10 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              <Button
+               onPress={ () => NativeModules.NavigationModule.goToNextScreen()}
+               title="Hello"
+              />
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
