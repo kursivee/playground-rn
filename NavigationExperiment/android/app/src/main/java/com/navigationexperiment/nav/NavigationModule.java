@@ -27,4 +27,10 @@ public class NavigationModule extends ReactContextBaseJavaModule {
         navigation.setActivity(getCurrentActivity());
         navigation.goToNextScreen();
     }
+
+    @ReactMethod
+    public void goToMainScreen() {
+        navigation.setActivity(getCurrentActivity());
+        navigation.goToMainScreen();
+    }
 }

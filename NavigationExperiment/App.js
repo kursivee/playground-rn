@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import * as React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,8 +26,16 @@ import {
 import { NativeModules } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { DeviceEventEmitter } from 'react-native';
 
 const Stack = createStackNavigator()
+const navRef = React.createRef();
+
+DeviceEventEmitter.addListener('NAVIGATION', (event) => {
+  console.log(event.NAVIGATION)
+  navRef.current?.navigate(event.NAVIGATION)
+  NativeModules.NavigationModule.goToMainScreen()
+})
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -50,7 +58,7 @@ const HomeScreen = ({navigation}) => {
                title="Go to Native"
               />
               <Button
-               onPress={ () => navigation.navigate('NextScreen')}
+               onPress={ () => navigation.navigate('NEXT_SCREEN')}
                title="Go to Next RN"
               />
               <Text style={styles.sectionTitle}>Step One</Text>
@@ -85,7 +93,7 @@ const HomeScreen = ({navigation}) => {
   )
 }
 
-const NextScreen = () => {
+const NextScreen = ({navigation}) => {
   return (
     <View>
       <Text>Next Screen</Text>
@@ -99,10 +107,10 @@ const NextScreen = () => {
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navRef}>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="NextScreen" component={NextScreen} />
+        <Stack.Screen name="NEXT_SCREEN" component={NextScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
