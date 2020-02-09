@@ -11,3 +11,6 @@ Native -> RN Navigation Concept
 RN -> Native Navigation Concept
 - Native defines navigation module that navigates to new activity
 - RN calls navigation modules methods to navigate
+
+TODO: 
+- Migrate android project to Fragment Implementation
