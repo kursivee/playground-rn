@@ -7,7 +7,7 @@ import { Container } from 'inversify'
 
 const greetingContainer: Container = new Container()
 greetingContainer.parent = baseContainer
-greetingContainer.bind<GreetingService>(Types.Greeting).to(GreetingServiceImpl)
-greetingContainer.bind<GreetingApi>(Symbols.GreetingApi).to(GreetingApiImpl)
+greetingContainer.bind<GreetingService>(Types.Greeting).to(GreetingServiceImpl).inSingletonScope()
+greetingContainer.bind<GreetingApi>(Symbols.GreetingApi).to(GreetingApiImpl).inSingletonScope()
 
 export default greetingContainer

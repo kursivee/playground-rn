@@ -13,6 +13,8 @@ export interface Props {
 
 const App: React.FC<Props> = (props) => {
   const greetingSerivce: GreetingService = greetingContainer.get<GreetingService>(Types.Greeting)
+  const greetingSerivce2: GreetingService = greetingContainer.get<GreetingService>(Types.Greeting)
+  console.log("")
   return (
     <View>
       <Text>{greetingSerivce.hello()}</Text>      
