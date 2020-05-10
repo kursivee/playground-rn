@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import GreetingService, { Types } from './src/greeting/greeting-service'
-import baseContainer from './src/di/base-container'
+import baseContainer from './src/base/base-container'
+import greetingContainer from './src/greeting/greeting-container'
 
 export interface Props {
   name: string;
@@ -11,7 +12,7 @@ export interface Props {
 
 
 const App: React.FC<Props> = (props) => {
-  const greetingSerivce: GreetingService = baseContainer.get<GreetingService>(Types.Greeting)
+  const greetingSerivce: GreetingService = greetingContainer.get<GreetingService>(Types.Greeting)
   return (
     <View>
       <Text>{greetingSerivce.hello()}</Text>      

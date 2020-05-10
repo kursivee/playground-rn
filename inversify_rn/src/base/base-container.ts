@@ -1,5 +1,5 @@
 import 'reflect-metadata'
 import { Container } from 'inversify'
-import './greeting-module'
 
-export default new Container()
+const container = new Container()
+export default container
