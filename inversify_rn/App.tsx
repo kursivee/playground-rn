@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 import GreetingService, { Types } from './src/greeting/greeting-service'
-import baseContainer from './src/base/base-container'
 import greetingContainer from './src/greeting/greeting-container'
+import getDectorators from 'inversify-inject-decorators'
+
+const { lazyInject } = getDectorators(greetingContainer)
 
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
 }
 
+export default class App extends React.Component {
 
+  @lazyInject(Types.Greeting)
+  public greetingSerivce!: GreetingService
 
-const App: React.FC<Props> = (props) => {
-  const greetingSerivce: GreetingService = greetingContainer.get<GreetingService>(Types.Greeting)
-  const greetingSerivce2: GreetingService = greetingContainer.get<GreetingService>(Types.Greeting)
-  console.log("")
-  return (
-    <View>
-      <Text>{greetingSerivce.hello()}</Text>      
-    </View>
-  );
+  render() {
+    return (
+      <View>
+        <Text>{this.greetingSerivce.hello()}</Text>      
+      </View>
+    );
+  }
 };
-
-export default App;
