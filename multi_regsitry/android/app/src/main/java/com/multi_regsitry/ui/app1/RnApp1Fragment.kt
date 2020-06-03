@@ -1,12 +1,12 @@
-package com.multi_regsitry.ui.login
+package com.multi_regsitry.ui.app1
 
 import android.os.Bundle
 import com.facebook.react.ReactFragment
 
-class RnLoginFragment : ReactFragment() {
+class RnApp1Fragment : ReactFragment() {
 
     companion object {
-        fun newInstance() = RnLoginFragment().apply {
+        fun newInstance() = RnApp2Fragment().apply {
             arguments = Bundle().apply {
                 putString("arg_component_name", "App1")
             }

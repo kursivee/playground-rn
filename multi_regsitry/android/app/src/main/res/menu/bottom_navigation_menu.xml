@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/app_1"
+        android:enabled="true"
+        android:title="App 1"/>
+    <item
+        android:id="@+id/app_2"
+        android:enabled="true"
+        android:title="App 2"/>
+    <item
+        android:id="@+id/native_1"
+        android:enabled="true"
+        android:title="Native 1"/>
+    <item
+        android:id="@+id/native_2"
+        android:enabled="true"
+        android:title="Native 2"/>
+</menu>

@@ -1,4 +1,4 @@
-package com.multi_regsitry.ui.home;
+package com.multi_regsitry.ui.native_1;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 
 import com.multi_regsitry.R;
 
-public class HomeFragment extends Fragment {
+public class Native1Fragment extends Fragment {
 
-    private HomeViewModel mViewModel;
+    private Native1ViewModel mViewModel;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static Native1Fragment newInstance() {
+        return new Native1Fragment();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(Native1ViewModel.class);
         // TODO: Use the ViewModel
     }
 

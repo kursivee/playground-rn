@@ -24,6 +24,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+let x = 1
+console.log(x++)
+
 const App: () => React$Node = () => {
   return (
     <>
