@@ -24,8 +24,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-let x = 1
-console.log(x++)
+import getX from './src/shared.service'
+
+console.log(getX())
 
 const App: () => React$Node = () => {
   return (

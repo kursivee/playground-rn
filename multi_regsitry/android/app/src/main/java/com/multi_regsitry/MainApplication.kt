@@ -1,12 +1,17 @@
 package com.multi_regsitry
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.facebook.react.*
 import com.facebook.soloader.SoLoader
+import com.multi_regsitry.react.ReactDelegateProvider
 import java.lang.reflect.InvocationTargetException
 
-class MainApplication: Application(), ReactApplication {
+class MainApplication: Application(), ReactApplication, ReactDelegateProvider<String> {
+
+    private var app1Loaded = false
+    private var app2Loaded = false
 
     private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getPackages(): MutableList<ReactPackage> {
@@ -30,6 +35,21 @@ class MainApplication: Application(), ReactApplication {
         super.onCreate()
         SoLoader.init(this,  /* native exopackage */false)
         initializeFlipper(this, getReactNativeHost().reactInstanceManager)
+    }
+
+    private var app1: ReactDelegate? = null
+    private var app2: ReactDelegate? = null
+
+    override fun getReactDelegate(keySet: String, activity: Activity): ReactDelegate {
+        return when(keySet) {
+            "app1" -> app1 ?: ReactDelegate(activity, getReactNativeHost(), "App1", null).also {
+                app1 = it
+            }
+            "app2" -> ReactDelegate(activity, getReactNativeHost(), "App2", null).also {
+                app2 = it
+            }
+            else -> throw Exception("Invalid key")
+        }
     }
 
     /**
