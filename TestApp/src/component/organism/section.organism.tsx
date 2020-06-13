@@ -18,7 +18,7 @@ const Section: React.FC<Props> = ({ count, decrement}) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        count: state
+        count: state.home
     }
 }
 
